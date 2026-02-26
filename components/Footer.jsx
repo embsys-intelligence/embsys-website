@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { Mail, Phone, MapPin } from 'lucide-react'
-import Image from 'next/image'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -15,13 +14,11 @@ export default function Footer() {
           {/* Left Section - Logo & Description */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-brand p-1">
-                <Image
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+                <img
                   src="/embsys_logo.png"
                   alt="Embsys Logo"
-                  width={32}
-                  height={32}
-                  className="rounded"
+                  className="w-full h-full object-contain rounded"
                 />
               </div>
               <span className="font-bold text-dark-text text-lg">Embsys</span>
