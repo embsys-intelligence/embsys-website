@@ -168,7 +168,7 @@ export default function Contact() {
                   className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6"
                 >
                   <p className="text-green-400 font-semibold">
-                    Thank you! Your message has been sent successfully. We'll get back to you soon.
+                    Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
                   </p>
                 </motion.div>
               )}
@@ -272,7 +272,7 @@ export default function Contact() {
               </form>
 
               <p className="text-dark-text text-sm text-center mt-6">
-                We'll respond within 24 hours during business hours.
+                We&apos;ll respond within 24 hours during business hours.
               </p>
             </motion.div>
           </div>
