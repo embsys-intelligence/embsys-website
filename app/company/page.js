@@ -1,98 +1,94 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Zap, Cpu, Rocket, DollarSign, ArrowRight } from 'lucide-react'
+import { Rocket, ArrowRight, MapPin, Mail, Users, Target, Award, Sparkles, Factory, Gem } from 'lucide-react'
 import Link from 'next/link'
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
 }
 
 export default function Company() {
+  const values = [
+    { icon: Rocket, title: 'Autonomous First', description: 'We build agents that work without human intervention — inspect, decide and act on their own', color: 'from-blue-400 to-cyan-400' },
+    { icon: Target, title: 'Industry + Fintech', description: 'Equal focus on manufacturing quality control and jewelry fintech — two verticals, one platform', color: 'from-cyan-400 to-teal-400' },
+    { icon: Users, title: 'Customer Partnership', description: 'We embed with our clients to understand their inspection workflows deeply before building', color: 'from-teal-400 to-blue-400' },
+    { icon: Award, title: 'Production-Grade', description: 'Every agent we ship is battle-tested in real factories and gold loan branches', color: 'from-blue-400 to-purple-400' },
+  ]
+
+  const milestones = [
+    { year: '2022', title: 'Founded', description: 'Embsys Intelligence established in Chennai with a vision to make autonomous visual inspection accessible' },
+    { year: '2023', title: 'Industry Launch', description: 'Deployed first autonomous inspection agents on manufacturing lines — defect detection and robotic guidance' },
+    { year: '2024', title: 'Fintech Expansion', description: 'Entered jewelry fintech — launched gold loan audit agents for NBFCs and gold loan companies' },
+    { year: '2025', title: 'Agentic Platform', description: 'Released multi-agent orchestration platform serving both industrial and financial institution clients' },
+  ]
+
   return (
     <>
-      {/* Hero Section */}
-      <section className="min-h-[70vh] flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-dark pointer-events-none"></div>
+      {/* Hero */}
+      <section className="min-h-[70vh] flex items-center justify-center relative overflow-hidden bg-grid">
+        <div className="blob-blue top-20 -right-48 opacity-50"></div>
+        <div className="blob-cyan bottom-20 -left-48 opacity-50"></div>
+        <div className="blob-purple top-1/2 left-1/3 opacity-30"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-dark-text">
-              About Embsys
-              <span className="block bg-gradient-brand bg-clip-text text-transparent">Intelligence</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 relative z-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold uppercase tracking-widest">
+              <Sparkles size={14} /> About Us
+            </div>
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
+              <span className="text-dark-text">Building Autonomous</span>
+              <span className="block text-gradient-animate">Inspection Agents</span>
             </h1>
-            <p className="text-xl text-dark-text max-w-3xl mx-auto">
-              Leading the industrial AI revolution with intelligent visual inspection systems
+            <p className="text-xl text-dark-muted max-w-3xl mx-auto">
+              We are a team of AI engineers building autonomous visual inspection agents that serve two worlds — factory floors where quality is non-negotiable, and financial institutions where gold and jewelry demand trust.
             </p>
           </motion.div>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark-bg to-transparent"></div>
       </section>
 
-      {/* About Company */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Mission */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              <h2 className="text-4xl font-bold text-dark-text">Who We Are</h2>
-              <p className="text-lg text-dark-text leading-relaxed">
-                Embsys Intelligence Pvt Ltd develops advanced Agentic AI-powered visual inspection systems for industrial automation. We are committed to transforming the way industries approach quality control and defect detection.
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-dark-text mb-6 tracking-tight">Our Mission</h2>
+              <p className="text-dark-muted text-lg leading-relaxed mb-6">
+                To make autonomous visual inspection accessible to every manufacturer and every financial institution — from small jewelry workshops to large-scale assembly plants and NBFC branches.
               </p>
-              <p className="text-lg text-dark-text leading-relaxed">
-                Our mission is to make AI-powered industrial automation accessible to businesses of all sizes, delivering enterprise-grade solutions with minimal complexity and maximum impact.
+              <p className="text-dark-muted text-lg leading-relaxed mb-8">
+                We believe inspection should not require humans staring at screens. Our agents see, understand and decide — whether they're checking PCB solder joints on a production line or verifying gold purity in a loan branch.
               </p>
-              <div className="pt-4">
-                <h3 className="text-xl font-bold text-dark-text mb-4">Our Values</h3>
-                <ul className="space-y-3">
-                  {['Innovation', 'Reliability', 'Customer Success', 'Transparency'].map((value, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-gradient-brand flex-shrink-0"></div>
-                      <span className="text-dark-text text-lg">{value}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex gap-4">
+                <div className="gradient-border rounded-xl p-4 flex-1 text-center">
+                  <Factory size={28} className="text-brand-primary mx-auto mb-2" />
+                  <p className="text-dark-text font-bold text-sm">Industry</p>
+                  <p className="text-dark-muted text-xs mt-1">Manufacturing, Assembly, QC</p>
+                </div>
+                <div className="gradient-border rounded-xl p-4 flex-1 text-center">
+                  <Gem size={28} className="text-brand-purple mx-auto mb-2" />
+                  <p className="text-dark-text font-bold text-sm">Fintech</p>
+                  <p className="text-dark-muted text-xs mt-1">Jewelry, Gold Loans, Vaults</p>
+                </div>
               </div>
             </motion.div>
 
-            {/* Image/Illustration */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="relative h-96 flex items-center justify-center"
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary to-brand-accent opacity-10 rounded-3xl blur-3xl"></div>
-              <div className="glass rounded-3xl p-8 w-full h-full flex items-center justify-center relative z-10">
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="relative h-80 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-brand-accent/10 rounded-3xl blur-3xl"></div>
+              <div className="gradient-border-animated rounded-3xl p-8 w-full h-full flex items-center justify-center relative z-10">
                 <div className="text-center space-y-4">
-                  <div className="text-6xl">🚀</div>
-                  <h3 className="text-2xl font-bold text-dark-text">Innovation First</h3>
-                  <p className="text-dark-text text-sm">Pioneering the future of industrial AI</p>
+                  <div className="w-24 h-24 rounded-2xl bg-gradient-brand flex items-center justify-center mx-auto mb-4 shadow-glow animate-float icon-pulse">
+                    <Rocket size={48} className="text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-dark-text">Autonomous First</h3>
+                  <p className="text-dark-muted text-sm">Agents that inspect without humans</p>
                 </div>
               </div>
             </motion.div>
@@ -100,71 +96,24 @@ export default function Company() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16 md:py-24 bg-gradient-dark rounded-3xl mx-4 sm:mx-6 lg:mx-8 my-12">
+      {/* Values */}
+      <section className="py-20 md:py-28 bg-dots">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-          >
-            <motion.div variants={itemVariants} className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-dark-text mb-4">Our Mission</h3>
-              <p className="text-dark-text leading-relaxed">
-                To empower industrial enterprises with cutting-edge Agentic AI and visual intelligence technologies, enabling autonomous decision-making for quality control, defect detection, and operational optimization.
-              </p>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-dark-text mb-4">Our Vision</h3>
-              <p className="text-dark-text leading-relaxed">
-                To be the global leader in industrial AI solutions, where every manufacturing facility leverages intelligent visual inspection systems to achieve zero-defect operations and maximum efficiency.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Embsys */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-4">Why Choose Embsys</h2>
-            <p className="text-dark-text text-lg max-w-2xl mx-auto">
-              We combine cutting-edge AI with practical industrial solutions
-            </p>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">What We Stand For</h2>
+            <p className="text-dark-muted text-lg">The principles that guide our agents — and our team</p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {[
-              { icon: Zap, title: 'Agentic AI', description: 'Autonomous agents making intelligent decisions' },
-              { icon: Cpu, title: 'Edge AI', description: 'On-device processing with zero cloud dependency' },
-              { icon: Rocket, title: 'Fast Deployment', description: 'Production-ready in hours, not months' },
-              { icon: DollarSign, title: 'Affordable', description: 'Enterprise quality at competitive pricing' },
-            ].map((feature, index) => {
-              const Icon = feature.icon
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {values.map((value, index) => {
+              const Icon = value.icon
               return (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  className="glass rounded-2xl p-8 text-center group hover:border-brand-accent transition-all"
-                >
-                  <div className="w-16 h-16 rounded-lg bg-gradient-brand flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                    <Icon size={32} className="text-dark-text" />
+                <motion.div key={index} variants={itemVariants} className="gradient-border rounded-2xl p-7 text-center group shine">
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${value.color} flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300`}>
+                    <Icon size={28} className="text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-dark-text mb-3">{feature.title}</h3>
-                  <p className="text-dark-text">{feature.description}</p>
+                  <h3 className="text-lg font-bold text-dark-text mb-2 group-hover:text-brand-primary transition-colors">{value.title}</h3>
+                  <p className="text-dark-muted text-sm leading-relaxed">{value.description}</p>
                 </motion.div>
               )
             })}
@@ -172,123 +121,88 @@ export default function Company() {
         </div>
       </section>
 
-      {/* Office Location */}
-      <section className="py-16 md:py-24 bg-gradient-dark rounded-3xl mx-4 sm:mx-6 lg:mx-8 my-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-4">Our Location</h2>
-            <p className="text-dark-text text-lg max-w-2xl mx-auto">
-              Based in Chennai, India - A hub for technology and innovation
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-8 overflow-hidden"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Map Placeholder */}
-              <div className="bg-dark-card rounded-2xl h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-5xl mb-4">📍</div>
-                  <p className="text-dark-text">Chennai, India</p>
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-bold text-dark-text mb-2">Headquarters</h3>
-                  <p className="text-dark-text">
-                    Embsys Intelligence Pvt Ltd<br />
-                    19A, Dr. VSI Estate Phase II<br />
-                    Thiruvanmiyur<br />
-                    Dr. Vasi Estate, Phase II<br />
-                    Tharamani<br />
-                    Chennai, Tamil Nadu – 600041<br />
-                    India
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-dark-text mb-2">Contact</h3>
-                  <p className="text-dark-text">
-                    <strong>Phone:</strong> <a href="tel:+919944865029" className="hover:text-brand-accent transition-colors">+91 9944865029</a><br />
-                    <strong>Email:</strong> <a href="mailto:kk@embsysai.com" className="hover:text-brand-accent transition-colors">kk@embsysai.com</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Team / Culture Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-4">Our Culture</h2>
-            <p className="text-dark-text text-lg max-w-2xl mx-auto">
-              We believe in fostering innovation, collaboration, and excellence
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {[
-              { title: 'Innovate', description: 'Pushing boundaries in AI and industrial technology' },
-              { title: 'Collaborate', description: 'Working closely with customers to deliver value' },
-              { title: 'Excel', description: 'Maintaining the highest standards in everything we do' },
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="glass rounded-2xl p-8 text-center hover:border-brand-accent transition-all"
-              >
-                <h3 className="text-2xl font-bold text-dark-text mb-4">{value.title}</h3>
-                <p className="text-dark-text">{value.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24">
+      {/* Milestones */}
+      <section className="py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-12 md:p-16 text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-6">
-              Join the AI Revolution
-            </h2>
-            <p className="text-lg text-dark-text mb-8 max-w-2xl mx-auto">
-              Get in touch with our team to learn how Embsys can transform your industrial operations.
-            </p>
-            <Link
-              href="/contact"
-              className="btn-gradient text-dark-text px-10 py-4 rounded-lg font-semibold inline-flex items-center gap-2 hover:shadow-glow transition-all text-lg"
-            >
-              Contact Us <ArrowRight size={20} />
-            </Link>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">Our Journey</h2>
+            <p className="text-dark-muted text-lg">From first agent to multi-vertical platform</p>
+          </motion.div>
+
+          <div className="relative">
+            <div className="absolute left-[39px] top-0 bottom-0 w-px bg-gradient-to-b from-brand-primary via-brand-accent to-transparent opacity-30"></div>
+            <div className="space-y-8">
+              {milestones.map((milestone, index) => (
+                <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="flex items-start gap-6">
+                  <div className="flex-shrink-0 w-20 pt-1">
+                    <div className="text-2xl font-extrabold bg-gradient-brand bg-clip-text text-transparent">{milestone.year}</div>
+                  </div>
+                  <div className="w-3 h-3 rounded-full bg-gradient-brand flex-shrink-0 mt-2.5 shadow-glow"></div>
+                  <div className="gradient-border rounded-xl p-5 flex-1 shine">
+                    <h3 className="text-lg font-bold text-dark-text">{milestone.title}</h3>
+                    <p className="text-dark-muted text-sm mt-1">{milestone.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">Our Headquarters</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="gradient-border rounded-2xl p-8 shine">
+              <div className="flex items-start gap-4 mb-8">
+                <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin size={20} className="text-brand-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-dark-text mb-2">Office Address</h3>
+                  <p className="text-dark-muted text-sm leading-relaxed">No 2/156, 2nd Floor, Arcot Road,<br />Virugambakkam, Chennai - 600092,<br />Tamil Nadu, India</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Mail size={20} className="text-brand-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-dark-text mb-2">Email</h3>
+                  <a href="mailto:kk@embsysai.in" className="text-brand-primary hover:text-brand-accent transition-colors text-sm font-medium">kk@embsysai.in</a>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }} className="gradient-border-animated rounded-2xl h-64 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-brand flex items-center justify-center mx-auto mb-4 shadow-glow animate-float">
+                  <MapPin size={40} className="text-white" />
+                </div>
+                <p className="text-dark-text font-bold text-lg">Chennai, India</p>
+                <p className="text-dark-muted text-sm mt-1">Engineering Hub</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="gradient-border-animated rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-card rounded-3xl"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-5 tracking-tight">Build With Us</h2>
+              <p className="text-lg text-dark-muted mb-10 max-w-xl mx-auto">We are hiring engineers who want to build autonomous agents for real-world inspection — across industry and fintech.</p>
+              <Link href="/contact" className="btn-gradient px-10 py-4 text-lg inline-flex items-center gap-2">
+                Get in Touch <ArrowRight size={20} />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

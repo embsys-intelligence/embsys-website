@@ -1,75 +1,115 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Menu, X, ArrowRight, Sun, Moon } from 'lucide-react'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { useTheme } from './ThemeProvider'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const { theme, toggleTheme } = useTheme()
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/product', label: 'Product' },
-    { href: '/solutions', label: 'Solutions' },
-    { href: '/workflow', label: 'Workflow' },
+    { href: '/solution', label: 'Solution' },
     { href: '/company', label: 'Company' },
     { href: '/contact', label: 'Contact' },
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-dark-border bg-white/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg group-hover:shadow-glow transition-all flex items-center justify-center">
-              <img
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+      ? 'bg-[var(--color-bg)]/90 backdrop-blur-xl border-b border-[var(--color-border)]/50 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
+      : 'bg-transparent'
+      }`}>
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16">
+        <div className="relative flex justify-between items-center h-16 md:h-20">
+          {/* Logo - Left aligned */}
+          <div className="flex-1 flex justify-start">
+            <Link href="/" className="flex items-center group">
+              <Image
                 src="/embsys_logo.png"
                 alt="Embsys Logo"
-                className="w-full h-full object-contain rounded"
+                width={160}
+                height={50}
+                className="object-contain group-hover:drop-shadow-[0_0_16px_rgba(59,130,246,0.5)] transition-all duration-300"
+                priority
               />
-            </div>
-            <span className="hidden sm:inline font-bold text-dark-text text-lg">Embsys</span>
-          </Link>
+            </Link>
+          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Centered absolutely or relatively */}
+          <div className="hidden md:flex flex-1 justify-center items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-dark-text hover:text-brand-primary transition-colors text-sm font-medium relative group"
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative ${pathname === link.href
+                  ? 'text-dark-text bg-[var(--color-nav-hover)]'
+                  : 'text-dark-muted hover:text-dark-text hover:bg-[var(--color-nav-hover)]'
+                  }`}
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-brand group-hover:w-full transition-all duration-300"></span>
+                {pathname === link.href && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-gradient-brand rounded-full"></span>
+                )}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex">
-            <Link href="/contact" className="btn-gradient text-dark-text px-6 py-2 rounded-lg font-semibold text-sm">
-              Request Demo
+          {/* Theme Toggle + CTA - Right aligned */}
+          <div className="hidden md:flex flex-1 justify-end items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle"
+              aria-label="Toggle theme"
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <Link href="/contact" className="btn-gradient px-6 py-2.5 text-sm inline-flex items-center gap-2">
+              Request Demo <ArrowRight size={14} />
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-dark-text hover:text-brand-primary transition-colors"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: Theme Toggle + Menu Button */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-dark-muted hover:text-brand-primary transition-colors p-2 rounded-lg hover:bg-[var(--color-nav-hover)]"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 animate-slide-up bg-white">
+          <div className="md:hidden pb-6 animate-slide-down border-t border-[var(--color-border)]/30 pt-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block py-2 text-dark-text hover:text-brand-primary transition-colors text-sm"
+                className={`block py-3 px-4 rounded-lg text-sm transition-all ${pathname === link.href
+                  ? 'text-dark-text bg-[var(--color-nav-hover)] font-medium'
+                  : 'text-dark-muted hover:text-dark-text hover:bg-[var(--color-nav-hover)]'
+                  }`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -77,7 +117,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="block mt-4 btn-gradient text-dark-text px-6 py-2 rounded-lg font-semibold text-sm text-center"
+              className="block mt-4 btn-gradient px-6 py-3 text-sm text-center"
               onClick={() => setIsOpen(false)}
             >
               Request Demo

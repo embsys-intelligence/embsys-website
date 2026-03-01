@@ -1,360 +1,130 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { Mail, MapPin, Phone, ArrowRight, Send, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
-import Link from 'next/link'
 
 export default function Contact() {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
-  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', vertical: '', message: '' })
+  const [focused, setFocused] = useState(null)
 
-  const onSubmit = async (data) => {
-    try {
-      // In a real application, you would send this to your backend
-      console.log('Form data:', data)
-      setSubmitted(true)
-      reset()
-      setTimeout(() => setSubmitted(false), 5000)
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('Form submitted:', formData)
   }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const inputClass = (field) =>
+    `w-full px-4 py-3.5 rounded-xl bg-dark-surface border text-dark-text placeholder-dark-muted/40 focus:outline-none transition-all text-sm ${focused === field
+      ? 'border-brand-primary ring-2 ring-brand-primary/20 shadow-[0_0_20px_rgba(59,130,246,0.1)]'
+      : 'border-dark-border hover:border-dark-muted/30'
+    }`
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="min-h-[70vh] flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-dark pointer-events-none"></div>
+      {/* Hero */}
+      <section className="min-h-[50vh] flex items-center justify-center relative overflow-hidden bg-grid">
+        <div className="blob-blue top-10 -left-32 opacity-50"></div>
+        <div className="blob-cyan bottom-10 -right-32 opacity-50"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-dark-text">
-              Get in
-              <span className="block bg-gradient-brand bg-clip-text text-transparent">Touch</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 relative z-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-semibold uppercase tracking-widest">
+              <MessageCircle size={14} /> Get in Touch
+            </div>
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
+              <span className="text-dark-text">Deploy Agents</span>
+              <span className="block text-gradient-animate">For Your Use Case</span>
             </h1>
-            <p className="text-xl text-dark-text max-w-3xl mx-auto">
-              Have questions? Our team is here to help you get started with AI-powered visual inspection.
+            <p className="text-xl text-dark-muted max-w-2xl mx-auto">
+              Whether you need autonomous inspection on your factory floor or AI-driven gold loan audits — let's talk.
             </p>
           </motion.div>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark-bg to-transparent"></div>
       </section>
 
-      {/* Contact Content */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Contact Form & Info */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-4">Contact Information</h2>
-                <p className="text-dark-text text-lg">
-                  Reach out to us via phone, email, or visit our office in Chennai.
-                </p>
-              </div>
-
-              {/* Phone */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="glass rounded-2xl p-8 group hover:border-brand-accent transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-brand flex-shrink-0 flex items-center justify-center">
-                    <Phone size={24} className="text-dark-text" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-dark-text mb-2">Phone</h3>
-                    <a
-                      href="tel:+919944865029"
-                      className="text-dark-text hover:text-brand-accent transition-colors text-lg"
-                    >
-                      +91 9944865029
-                    </a>
-                  </div>
+            {/* Form */}
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+              <h2 className="text-2xl font-extrabold text-dark-text mb-8 tracking-tight">Tell us about your project</h2>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="block text-dark-muted text-xs font-semibold uppercase tracking-wider mb-2">Full Name</label>
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} onFocus={() => setFocused('name')} onBlur={() => setFocused(null)} required className={inputClass('name')} placeholder="Your name" />
                 </div>
-              </motion.div>
-
-              {/* Email */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="glass rounded-2xl p-8 group hover:border-brand-accent transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-brand flex-shrink-0 flex items-center justify-center">
-                    <Mail size={24} className="text-dark-text" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-dark-text mb-2">Email</h3>
-                    <a
-                      href="mailto:kk@embsysai.com"
-                      className="text-dark-text hover:text-brand-accent transition-colors text-lg"
-                    >
-                      kk@embsysai.com
-                    </a>
-                  </div>
+                <div>
+                  <label className="block text-dark-muted text-xs font-semibold uppercase tracking-wider mb-2">Email Address</label>
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} onFocus={() => setFocused('email')} onBlur={() => setFocused(null)} required className={inputClass('email')} placeholder="you@company.com" />
                 </div>
-              </motion.div>
-
-              {/* Address */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="glass rounded-2xl p-8 group hover:border-brand-accent transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-brand flex-shrink-0 flex items-center justify-center">
-                    <MapPin size={24} className="text-dark-text" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-dark-text mb-2">Address</h3>
-                    <p className="text-dark-text">
-                      Embsys Intelligence Pvt Ltd<br />
-                      19A, Dr. VSI Estate Phase II<br />
-                      Thiruvanmiyur<br />
-                      Dr. Vasi Estate, Phase II<br />
-                      Tharamani<br />
-                      Chennai, Tamil Nadu – 600041<br />
-                      India
-                    </p>
-                  </div>
+                <div>
+                  <label className="block text-dark-muted text-xs font-semibold uppercase tracking-wider mb-2">Company</label>
+                  <input type="text" name="company" value={formData.company} onChange={handleChange} onFocus={() => setFocused('company')} onBlur={() => setFocused(null)} className={inputClass('company')} placeholder="Your company name" />
                 </div>
-              </motion.div>
-
-              {/* Office Hours */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="glass rounded-2xl p-8"
-              >
-                <h3 className="text-xl font-bold text-dark-text mb-4">Business Hours</h3>
-                <div className="space-y-2 text-dark-text">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM IST</p>
-                  <p>Saturday: 10:00 AM - 4:00 PM IST</p>
-                  <p>Sunday: Closed</p>
+                <div>
+                  <label className="block text-dark-muted text-xs font-semibold uppercase tracking-wider mb-2">Vertical</label>
+                  <select name="vertical" value={formData.vertical} onChange={handleChange} onFocus={() => setFocused('vertical')} onBlur={() => setFocused(null)} className={inputClass('vertical')}>
+                    <option value="">Select your vertical</option>
+                    <option value="industry">Industry — Manufacturing & QC</option>
+                    <option value="fintech">Fintech — Jewelry & Gold Loans</option>
+                    <option value="both">Both Verticals</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
-              </motion.div>
+                <div>
+                  <label className="block text-dark-muted text-xs font-semibold uppercase tracking-wider mb-2">Message</label>
+                  <textarea name="message" value={formData.message} onChange={handleChange} onFocus={() => setFocused('message')} onBlur={() => setFocused(null)} required rows={5} className={`${inputClass('message')} resize-none`} placeholder="Describe your inspection use case..." />
+                </div>
+                <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="btn-gradient px-8 py-4 text-base inline-flex items-center gap-2 w-full justify-center">
+                  Send Message <Send size={18} />
+                </motion.button>
+              </form>
             </motion.div>
 
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="glass rounded-2xl p-8 md:p-12"
-            >
-              <h2 className="text-3xl font-bold text-dark-text mb-8">Send us a Message</h2>
+            {/* Info Cards */}
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="space-y-5">
+              <h2 className="text-2xl font-extrabold text-dark-text mb-8 tracking-tight">Get in touch</h2>
 
-              {submitted && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6"
-                >
-                  <p className="text-green-400 font-semibold">
-                    Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
-                  </p>
-                </motion.div>
-              )}
+              {[
+                { icon: Mail, title: 'Email', content: <a href="mailto:kk@embsysai.in" className="text-brand-primary hover:text-brand-accent transition-colors text-sm font-medium">kk@embsysai.in</a> },
+                { icon: Phone, title: 'Phone', content: <p className="text-dark-muted text-sm">Contact us via email for phone details</p> },
+                { icon: MapPin, title: 'Office', content: <p className="text-dark-muted text-sm leading-relaxed">No 2/156, 2nd Floor, Arcot Road,<br />Virugambakkam, Chennai - 600092,<br />Tamil Nadu, India</p> },
+              ].map((item, idx) => {
+                const Icon = item.icon
+                return (
+                  <motion.div key={idx} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: idx * 0.1 }} viewport={{ once: true }} className="gradient-border rounded-2xl p-6 shine">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Icon size={20} className="text-brand-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-base font-bold text-dark-text mb-1">{item.title}</h3>
+                        {item.content}
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Name */}
-                <div>
-                  <label htmlFor="name" className="block text-dark-text font-semibold mb-2">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    {...register('name', { required: 'Name is required' })}
-                    type="text"
-                    id="name"
-                    className="w-full glass rounded-lg px-4 py-3 text-dark-text placeholder-dark-text/50 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/30"
-                    placeholder="Your name"
-                  />
-                  {errors.name && (
-                    <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
-                  )}
+              {/* Schedule CTA */}
+              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }} viewport={{ once: true }} className="gradient-border-animated rounded-2xl p-8 text-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-card rounded-2xl"></div>
+                <div className="relative z-10">
+                  <h3 className="text-lg font-bold text-dark-text mb-2">Prefer a live demo?</h3>
+                  <p className="text-dark-muted text-sm mb-5">See autonomous agents inspect in real-time — choose your vertical</p>
+                  <button className="btn-outline px-6 py-3 text-sm inline-flex items-center gap-2">
+                    Schedule Demo <ArrowRight size={14} />
+                  </button>
                 </div>
-
-                {/* Email */}
-                <div>
-                  <label htmlFor="email" className="block text-dark-text font-semibold mb-2">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    {...register('email', {
-                      required: 'Email is required',
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: 'Please enter a valid email',
-                      },
-                    })}
-                    type="email"
-                    id="email"
-                    className="w-full glass rounded-lg px-4 py-3 text-dark-text placeholder-dark-text/50 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/30"
-                    placeholder="you@company.com"
-                  />
-                  {errors.email && (
-                    <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
-                  )}
-                </div>
-
-                {/* Company */}
-                <div>
-                  <label htmlFor="company" className="block text-dark-text font-semibold mb-2">
-                    Company Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    {...register('company', { required: 'Company name is required' })}
-                    type="text"
-                    id="company"
-                    className="w-full glass rounded-lg px-4 py-3 text-dark-text placeholder-dark-text/50 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/30"
-                    placeholder="Your company"
-                  />
-                  {errors.company && (
-                    <p className="text-red-400 text-sm mt-1">{errors.company.message}</p>
-                  )}
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label htmlFor="phone" className="block text-dark-text font-semibold mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    {...register('phone')}
-                    type="tel"
-                    id="phone"
-                    className="w-full glass rounded-lg px-4 py-3 text-dark-text placeholder-dark-text/50 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/30"
-                    placeholder="+91 XXXXX XXXXX"
-                  />
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label htmlFor="message" className="block text-dark-text font-semibold mb-2">
-                    Message <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    {...register('message', { required: 'Message is required' })}
-                    id="message"
-                    rows={5}
-                    className="w-full glass rounded-lg px-4 py-3 text-dark-text placeholder-dark-text/50 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/30 resize-none"
-                    placeholder="Tell us about your inspection needs..."
-                  ></textarea>
-                  {errors.message && (
-                    <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="w-full btn-gradient text-dark-text py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-glow transition-all text-lg"
-                >
-                  Send Message <ArrowRight size={20} />
-                </button>
-              </form>
-
-              <p className="text-dark-text text-sm text-center mt-6">
-                We&apos;ll respond within 24 hours during business hours.
-              </p>
+              </motion.div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-gradient-dark rounded-3xl mx-4 sm:mx-6 lg:mx-8 my-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-4">Frequently Asked Questions</h2>
-            <p className="text-dark-text text-lg">
-              Common questions about our products and services
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
-          >
-            {[
-              {
-                q: 'How long does it take to deploy the solution?',
-                a: 'Deployment typically takes 1-2 days from image collection to production. The AI model training takes 15-30 minutes.',
-              },
-              {
-                q: 'What is the minimum number of training images needed?',
-                a: 'We recommend 5-10 images per class for initial training. More diverse images improve accuracy.',
-              },
-              {
-                q: 'Can the system work offline?',
-                a: 'Yes! Our edge AI solution processes data locally without cloud dependency.',
-              },
-              {
-                q: 'What is the typical ROI timeframe?',
-                a: 'Most customers see ROI within 3-6 months due to improved efficiency and reduced defect rates.',
-              },
-            ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass rounded-xl p-6 group hover:border-brand-accent transition-all"
-              >
-                <h3 className="text-lg font-bold text-dark-text mb-2">{faq.q}</h3>
-                <p className="text-dark-text">{faq.a}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-12 md:p-16 text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-text mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-lg text-dark-text mb-8 max-w-2xl mx-auto">
-              Our team is ready to provide a personalized demo and answer all your questions.
-            </p>
-            <Link
-              href="#contact-form"
-              className="btn-gradient text-dark-text px-10 py-4 rounded-lg font-semibold inline-flex items-center gap-2 hover:shadow-glow transition-all text-lg"
-            >
-              Schedule a Demo <ArrowRight size={20} />
-            </Link>
-          </motion.div>
         </div>
       </section>
     </>
