@@ -24,7 +24,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'sans-serif'],
+        sans: ['var(--font-jakarta)', 'sans-serif'],
+        display: ['var(--font-outfit)', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-brand': 'linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)',

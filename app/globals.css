@@ -67,9 +67,19 @@ html {
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Inter', sans-serif;
+  /* The layout applies font-sans to the body, so we can inherit it here */
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-outfit), sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* ========== THEME-AWARE TAILWIND OVERRIDES ========== */

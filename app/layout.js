@@ -2,6 +2,19 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Outfit, Plus_Jakarta_Sans } from 'next/font/google'
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-outfit',
+})
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jakarta',
+})
 
 export const metadata = {
   title: 'Embsys Intelligence — Autonomous Agents for Visual Inspection',
@@ -39,8 +52,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
-      <body className="antialiased">
+    <html lang="en" data-theme="light" className={`${outfit.variable} ${jakarta.variable}`}>
+      <body className="antialiased font-sans">
         <ThemeProvider>
           <Navbar />
           <main className="pt-16 md:pt-20">{children}</main>

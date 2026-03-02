@@ -49,7 +49,7 @@ export default function Home() {
     {
       icon: Cpu,
       title: 'Deploy at the Edge',
-      desc: 'Our agents run on-premise on edge hardware. Your data never leaves your facility — zero cloud dependency.',
+      desc: 'Our agents run inference on-premise on edge hardware for speed, while optionally syncing records to the cloud.',
     },
     {
       icon: Layers,
@@ -61,8 +61,8 @@ export default function Home() {
   const whyUs = [
     { icon: Zap, title: 'Fully Autonomous', desc: 'Agents inspect, decide and act — no human in the loop needed' },
     { icon: Shield, title: 'Enterprise-Grade Security', desc: 'ISO-compliant, audit-ready infrastructure for regulated industries' },
-    { icon: Clock, title: 'Live in 48 Hours', desc: 'From first call to production deployment in under two days' },
-    { icon: TrendingUp, title: '10x Cost Savings', desc: 'Fraction of the cost of manual inspection at 10x the throughput' },
+    { icon: Clock, title: 'Rapid Deployment', desc: 'From first call to production deployment at record speed' },
+    { icon: TrendingUp, title: 'Cost Efficient', desc: 'A fraction of the cost of manual inspection with scaled throughput' },
     { icon: Users, title: 'Domain Expertise', desc: 'Deep experience in both manufacturing quality control and jewelry fintech' },
     { icon: Target, title: 'Purpose-Built', desc: 'Not generic AI — every agent is trained specifically for visual inspection' },
   ]
@@ -166,7 +166,7 @@ export default function Home() {
             </div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">What We Do</h2>
             <p className="text-dark-muted text-lg max-w-2xl mx-auto">
-              Embsys Intelligence builds autonomous AI agents purpose-built for visual inspection — deployed at the edge, not the cloud.
+              Embsys Intelligence builds autonomous AI agents purpose-built for visual inspection — deployed at the edge with seamless cloud synchronization.
             </p>
           </motion.div>
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-6">

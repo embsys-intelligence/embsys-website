@@ -25,23 +25,23 @@ export default function Solution() {
     {
       icon: Factory,
       title: 'Manufacturing QC',
-      description: 'Autonomous agents inspect products on assembly lines, detect micro-defects and trigger reject mechanisms at <10ms.',
+      description: 'Autonomous agents inspect products on assembly lines, detect micro-defects and trigger reject mechanisms strictly in real-time.',
       tags: ['Defect Detection', 'Real-time', 'Assembly Line'],
-      stat: '99.8% accuracy',
+      stat: 'Real-time Fraud Defense',
     },
     {
       icon: Eye,
       title: 'Presence Verification',
       description: 'Agents verify component presence, orientation and placement — without human supervision and zero missed parts.',
       tags: ['6-Sigma Quality', 'Zero Touch', 'Vision AI'],
-      stat: '0 false negatives',
+      stat: 'Highly Reliable Validation',
     },
     {
       icon: Cpu,
       title: 'Robotic Guidance',
       description: 'Vision agents guide robotic arms for automated pick-and-place, welding and precision assembly at scale.',
       tags: ['Edge AI', 'Robotics', 'Automation'],
-      stat: '40% cycle time cut',
+      stat: 'Cycle time reduction',
     },
   ]
 
@@ -51,7 +51,7 @@ export default function Solution() {
       title: 'Jewelry Inspection',
       description: 'Agents authenticate gold purity, verify hallmarks, grade stone quality and generate tamper-proof digital certificates.',
       tags: ['Hallmark Verify', 'Stone Grading', 'Digital Cert'],
-      stat: '±0.1% purity precision',
+      stat: 'Precise Valuation',
     },
     {
       icon: Landmark,
@@ -63,9 +63,9 @@ export default function Solution() {
     {
       icon: Shield,
       title: 'Vault Monitoring & Tracking',
-      description: 'Vision agents continuously monitor jewelry vaults, track tagged assets and alert on unauthorized access or movement.',
-      tags: ['24/7 Monitoring', 'RFID Fusion', 'Zero Trust'],
-      stat: '100% coverage',
+      description: 'Agents continuously monitor vault areas, tracking inventory movement and identifying unauthorized access instantly.',
+      tags: ['24/7 Security', 'Inventory Tracking', 'Video AI'],
+      stat: 'Continuous Oversight',
     },
   ]
 
@@ -80,7 +80,7 @@ export default function Solution() {
       icon: Server,
       title: 'Edge Controller',
       spec: 'NVIDIA Jetson · 4× AI TOPS',
-      description: 'On-premise compute unit that runs multi-agent AI orchestration locally — data sovereignty guaranteed.',
+      description: 'On-premise compute unit that runs multi-agent AI orchestration locally, with secure cloud synchronization.',
     },
   ]
 
@@ -101,8 +101,8 @@ export default function Solution() {
 
   const capabilities = [
     { icon: Zap, label: 'Autonomous — no human in the loop' },
-    { icon: Layers, label: 'Edge-first — zero cloud dependency' },
-    { icon: Clock, label: 'Deploy in production in 48 hours' },
+    { icon: Layers, label: 'Edge-inference with optional cloud storage' },
+    { icon: Clock, label: 'Fast production deployment' },
     { icon: GitMerge, label: 'Multi-agent collaboration' },
     { icon: BarChart3, label: 'Auto-generated compliance reports' },
     { icon: Sparkles, label: 'Works across industry + fintech' },
@@ -112,7 +112,7 @@ export default function Solution() {
     { num: '01', title: 'Discovery Call', desc: 'Understand your inspection requirements and data' },
     { num: '02', title: 'Agent Configuration', desc: 'Fine-tune models to your specific defects and items' },
     { num: '03', title: 'Edge Deployment', desc: 'Hardware installed and agents deployed on-premise' },
-    { num: '04', title: 'Go Live', desc: 'Production-ready inspection in under 48 hours' },
+    { num: '04', title: 'Go Live', desc: 'Production-ready inspection scaling rapidly across facilities' },
   ]
 
   const activeSolutions = activeTab === 'industry' ? industrySolutions : fintechSolutions
@@ -153,7 +153,7 @@ export default function Solution() {
 
             <p className="text-lg md:text-xl text-dark-muted max-w-2xl mx-auto leading-relaxed">
               From the factory floor to the gold loan vault — a complete hardware + software platform
-              that deploys AI inspection agents in under <span className="text-dark-text font-semibold">48 hours</span>.
+              that deploys AI inspection agents <span className="text-dark-text font-semibold">rapidly</span>.
             </p>
 
             {/* Hero Metric Pills */}
@@ -164,10 +164,10 @@ export default function Solution() {
               className="flex flex-wrap justify-center gap-3 pt-2"
             >
               {[
-                { label: '99.8% accuracy', color: 'text-brand-primary', bg: 'bg-brand-primary/10 border-brand-primary/20' },
-                { label: '<10ms decisions', color: 'text-brand-accent', bg: 'bg-brand-accent/10 border-brand-accent/20' },
-                { label: '48hr go-live', color: 'text-brand-purple', bg: 'bg-brand-purple/10 border-brand-purple/20' },
-                { label: '10x cost savings', color: 'text-green-400', bg: 'bg-green-400/10 border-green-400/20' },
+                { label: 'High Accuracy', color: 'text-brand-primary', bg: 'bg-brand-primary/10 border-brand-primary/20' },
+                { label: 'Real-time Decisions', color: 'text-brand-accent', bg: 'bg-brand-accent/10 border-brand-accent/20' },
+                { label: 'Fast Go-live', color: 'text-brand-purple', bg: 'bg-brand-purple/10 border-brand-purple/20' },
+                { label: 'Cost Efficient', color: 'text-green-400', bg: 'bg-green-400/10 border-green-400/20' },
               ].map((p, i) => (
                 <span key={i} className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border text-xs font-bold uppercase tracking-wider ${p.bg} ${p.color}`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-current animate-ping-slow"></span>
@@ -288,10 +288,10 @@ export default function Solution() {
                 </div>
                 <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-brand-accent mb-2">Hardware</span>
                 <h3 className="relative z-10 text-2xl font-extrabold text-dark-text text-center">Edge-First Infrastructure</h3>
-                <p className="relative z-10 text-dark-muted text-sm text-center mt-2">Runs AI agents on-premise. Zero cloud.</p>
+                <p className="relative z-10 text-dark-muted text-sm text-center mt-2">Runs AI on-premise. Syncs to cloud.</p>
                 {/* Floating spec badges */}
                 <div className="relative z-10 flex gap-2 mt-5 flex-wrap justify-center">
-                  {['IP67 Rated', 'Edge Inference', 'No Cloud'].map(b => (
+                  {['IP67 Rated', 'Edge Inference', 'Cloud Sync'].map(b => (
                     <span key={b} className="px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-semibold">{b}</span>
                   ))}
                 </div>
@@ -304,7 +304,7 @@ export default function Solution() {
                 Hardware Components
               </div>
               <h3 className="text-2xl md:text-3xl font-extrabold text-dark-text tracking-tight">Edge-First Hardware</h3>
-              <p className="text-dark-muted">Purpose-built for autonomous inspection — runs AI agents on-premise with zero cloud dependency.</p>
+              <p className="text-dark-muted">Purpose-built for autonomous inspection — runs AI inference on-premise while securely syncing records to the cloud.</p>
               <div className="space-y-4 mt-2">
                 {hardware.map((item, i) => {
                   const Icon = item.icon
@@ -407,7 +407,7 @@ export default function Solution() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-400/10 border border-green-400/20 text-green-400 text-xs font-bold uppercase tracking-widest mb-4">
-              <Clock size={12} /> Go Live in 48 Hours
+              <Clock size={12} /> Fast Production Go-Live
             </div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">How Deployment Works</h2>
             <p className="text-dark-muted text-lg max-w-xl mx-auto">From first call to production deployment — the fastest way to autonomous inspection.</p>
