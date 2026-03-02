@@ -93,7 +93,7 @@ export default function Contact() {
 
               {[
                 { icon: Mail, title: 'Email', content: <a href="mailto:kk@embsysai.in" className="text-brand-primary hover:text-brand-accent transition-colors text-sm font-medium">kk@embsysai.in</a> },
-                { icon: Phone, title: 'Phone', content: <p className="text-dark-muted text-sm">Contact us via email for phone details</p> },
+                { icon: Phone, title: 'Phone', content: <p className="text-dark-muted text-sm">+91 9944865029</p> },
                 { icon: MapPin, title: 'Office', content: <p className="text-dark-muted text-sm leading-relaxed">No 2/156, 2nd Floor, Arcot Road,<br />Virugambakkam, Chennai - 600092,<br />Tamil Nadu, India</p> },
               ].map((item, idx) => {
                 const Icon = item.icon

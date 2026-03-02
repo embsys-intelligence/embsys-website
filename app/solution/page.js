@@ -5,6 +5,7 @@ import {
   Camera, Server, Zap, Puzzle, ArrowRight, Factory, Gem,
   CheckCircle, Cpu, Landmark, Eye, Shield, Scan,
   Layers, Clock, BarChart3, GitMerge, Sparkles, ChevronRight,
+  BrainCircuit,
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -278,45 +279,68 @@ export default function Solution() {
           </motion.div>
 
           {/* Hardware Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Left: Hardware visual */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="gradient-border-animated rounded-3xl p-1">
-              <div className="bg-[var(--color-surface)] rounded-[22px] p-8 h-full flex flex-col items-center justify-center min-h-[280px] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-brand-accent/5"></div>
-                <div className="w-20 h-20 rounded-2xl bg-gradient-brand flex items-center justify-center mb-6 shadow-glow animate-float icon-pulse relative z-10">
-                  <Camera size={40} className="text-white" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-8">
+            {/* Left: Hardware visual (Bento Style) */}
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="lg:col-span-5 gradient-border-animated rounded-3xl p-1 group">
+              <div className="bg-[var(--color-surface)] rounded-[22px] p-8 h-full min-h-[380px] relative overflow-hidden flex flex-col justify-between">
+                {/* Tech Background Pattern */}
+                <div className="absolute inset-0 bg-grid opacity-30"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-[80px] group-hover:bg-brand-primary/20 transition-all duration-700"></div>
+
+                {/* Top Section */}
+                <div className="relative z-10">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-ping-slow"></span>
+                    Hardware Active
+                  </span>
+                  <h3 className="text-3xl font-extrabold text-dark-text tracking-tight mb-2">Edge-First<br />Infrastructure</h3>
+                  <p className="text-dark-muted text-sm">Industrial-grade compute nodes deployed directly on your factory floor.</p>
                 </div>
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-brand-accent mb-2">Hardware</span>
-                <h3 className="relative z-10 text-2xl font-extrabold text-dark-text text-center">Edge-First Infrastructure</h3>
-                <p className="relative z-10 text-dark-muted text-sm text-center mt-2">Runs AI on-premise. Syncs to cloud.</p>
+
+                {/* Simulated Device Interface */}
+                <div className="relative z-10 mt-8 p-4 rounded-2xl bg-[var(--color-bg)] border border-[var(--color-border)] shadow-inner overflow-hidden">
+                  <div className="flex justify-between items-center mb-3 border-b border-[var(--color-border)] pb-2 flex-wrap gap-2">
+                    <div className="flex items-center gap-2">
+                      <Camera size={14} className="text-brand-muted" />
+                      <span className="text-xs font-mono text-dark-muted">JETSON_NANO_X1</span>
+                    </div>
+                    <div className="flex gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                      <span className="w-2 h-2 rounded-full bg-brand-accent"></span>
+                      <span className="w-2 h-2 rounded-full bg-brand-primary"></span>
+                    </div>
+                  </div>
+                  <div className="space-y-2 font-mono text-[10px] sm:text-xs">
+                    <div className="flex justify-between"><span className="text-dark-muted">CPU:</span> <span className="text-brand-accent">24%</span></div>
+                    <div className="flex justify-between"><span className="text-dark-muted">GPU:</span> <span className="text-brand-primary">89%</span></div>
+                    <div className="flex justify-between"><span className="text-dark-muted">TEMP:</span> <span className="text-orange-400">42°C</span></div>
+                    <div className="flex justify-between"><span className="text-dark-muted">INFERENCE:</span> <span className="text-green-400">8.2ms</span></div>
+                  </div>
+                </div>
+
                 {/* Floating spec badges */}
-                <div className="relative z-10 flex gap-2 mt-5 flex-wrap justify-center">
+                <div className="relative z-10 flex gap-2 mt-6 flex-wrap">
                   {['IP67 Rated', 'Edge Inference', 'Cloud Sync'].map(b => (
-                    <span key={b} className="px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-semibold">{b}</span>
+                    <span key={b} className="px-3 py-1 rounded-full bg-brand-primary/5 border border-brand-primary/20 text-brand-primary text-[10px] font-bold tracking-wide uppercase">{b}</span>
                   ))}
                 </div>
               </div>
             </motion.div>
 
             {/* Right: Hardware cards */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="space-y-4 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold uppercase tracking-widest mb-2">
-                Hardware Components
-              </div>
-              <h3 className="text-2xl md:text-3xl font-extrabold text-dark-text tracking-tight">Edge-First Hardware</h3>
-              <p className="text-dark-muted">Purpose-built for autonomous inspection — runs AI inference on-premise while securely syncing records to the cloud.</p>
-              <div className="space-y-4 mt-2">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="lg:col-span-7 space-y-4 flex flex-col justify-center">
+              <div className="space-y-4">
                 {hardware.map((item, i) => {
                   const Icon = item.icon
                   return (
-                    <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }} viewport={{ once: true }} className="gradient-border rounded-2xl p-5 group shine flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-brand flex-shrink-0 flex items-center justify-center group-hover:shadow-glow transition-all">
-                        <Icon size={22} className="text-white" />
+                    <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }} viewport={{ once: true }} className="glass rounded-2xl p-6 group hover:border-brand-primary/30 transition-all duration-300 flex flex-col sm:flex-row items-start gap-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-brand flex-shrink-0 flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-500">
+                        <Icon size={24} className="text-white relative z-10" />
                       </div>
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-base font-bold text-dark-text group-hover:text-brand-primary transition-colors">{item.title}</h4>
-                          <span className="px-2 py-0.5 rounded text-xs bg-brand-primary/10 text-brand-primary font-mono">{item.spec}</span>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                          <h4 className="text-lg font-bold text-dark-text group-hover:text-brand-primary transition-colors">{item.title}</h4>
+                          <span className="px-2.5 py-0.5 rounded text-xs bg-[var(--color-surface)] border border-[var(--color-border)] text-brand-primary font-mono">{item.spec}</span>
                         </div>
                         <p className="text-dark-muted text-sm leading-relaxed">{item.description}</p>
                       </div>
@@ -328,26 +352,21 @@ export default function Solution() {
           </div>
 
           {/* Software Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mt-12 bg">
             {/* Left: Software cards */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="space-y-4 flex flex-col justify-center order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold uppercase tracking-widest mb-2">
-                Software Layer
-              </div>
-              <h3 className="text-2xl md:text-3xl font-extrabold text-dark-text tracking-tight">Agentic AI Software</h3>
-              <p className="text-dark-muted">Autonomous agents that inspect, decide and report — trained on your data, deployed in hours.</p>
-              <div className="space-y-4 mt-2">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="lg:col-span-7 space-y-4 flex flex-col justify-center order-2 lg:order-1">
+              <div className="space-y-4">
                 {software.map((item, i) => {
                   const Icon = item.icon
                   return (
-                    <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }} viewport={{ once: true }} className="gradient-border rounded-2xl p-5 group shine flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-purple flex-shrink-0 flex items-center justify-center group-hover:shadow-glow-purple transition-all">
-                        <Icon size={22} className="text-white" />
+                    <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }} viewport={{ once: true }} className="glass rounded-2xl p-6 group hover:border-brand-purple/30 transition-all duration-300 flex flex-col sm:flex-row items-start gap-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-purple flex-shrink-0 flex items-center justify-center shadow-glow-purple group-hover:scale-110 transition-transform duration-500">
+                        <Icon size={24} className="text-white relative z-10" />
                       </div>
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-base font-bold text-dark-text group-hover:text-brand-purple transition-colors">{item.title}</h4>
-                          <span className="px-2 py-0.5 rounded text-xs bg-brand-purple/10 text-brand-purple font-mono">{item.spec}</span>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                          <h4 className="text-lg font-bold text-dark-text group-hover:text-brand-purple transition-colors">{item.title}</h4>
+                          <span className="px-2.5 py-0.5 rounded text-xs bg-[var(--color-surface)] border border-[var(--color-border)] text-brand-purple font-mono">{item.spec}</span>
                         </div>
                         <p className="text-dark-muted text-sm leading-relaxed">{item.description}</p>
                       </div>
@@ -357,20 +376,49 @@ export default function Solution() {
               </div>
             </motion.div>
 
-            {/* Right: Software visual */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="gradient-border-animated rounded-3xl p-1 order-1 lg:order-2">
-              <div className="bg-[var(--color-surface)] rounded-[22px] p-8 h-full flex flex-col items-center justify-center min-h-[280px] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 to-brand-primary/5"></div>
-                <div className="w-20 h-20 rounded-2xl bg-gradient-purple flex items-center justify-center mb-6 shadow-glow-purple animate-float-slow icon-pulse relative z-10">
-                  <Puzzle size={40} className="text-white" />
+            {/* Right: Software visual (Bento Style) */}
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="lg:col-span-5 gradient-border-animated rounded-3xl p-1 group order-1 lg:order-2">
+              <div className="bg-[var(--color-surface)] rounded-[22px] p-8 h-full min-h-[380px] relative overflow-hidden flex flex-col justify-between">
+                {/* Tech Background Pattern */}
+                <div className="absolute inset-0 bg-grid opacity-30"></div>
+                <div className="absolute top-1/2 left-0 w-64 h-64 bg-brand-purple/10 rounded-full blur-[80px] group-hover:bg-brand-purple/20 transition-all duration-700"></div>
+
+                {/* Top Section */}
+                <div className="relative z-10">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-widest mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-purple animate-ping-slow"></span>
+                    Software Active
+                  </span>
+                  <h3 className="text-3xl font-extrabold text-dark-text tracking-tight mb-2">Agentic AI<br />Platform</h3>
+                  <p className="text-dark-muted text-sm">Multi-agent orchestration, continuous learning, and event-driven architectures.</p>
                 </div>
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-brand-purple mb-2">Software</span>
-                <h3 className="relative z-10 text-2xl font-extrabold text-dark-text text-center">Agentic AI Platform</h3>
-                <p className="relative z-10 text-dark-muted text-sm text-center mt-2">Multi-agent orchestration · Event-driven</p>
-                <div className="relative z-10 flex gap-2 mt-5 flex-wrap justify-center">
-                  {['Pre-trained', 'Fine-tunable', 'Audit Trails'].map(b => (
-                    <span key={b} className="px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold">{b}</span>
-                  ))}
+
+                {/* Simulated Data Pipeline Interface */}
+                <div className="relative z-10 mt-8 flex flex-col gap-3">
+                  <div className="p-3 rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] flex items-center justify-between shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded bg-brand-primary/10 flex items-center justify-center text-brand-primary"><Camera size={16} /></div>
+                      <span className="text-xs font-semibold text-dark-text">Frame Ingestion</span>
+                    </div>
+                    <span className="text-[10px] text-green-400 font-mono">OK</span>
+                  </div>
+                  <div className="w-0.5 h-4 bg-gradient-to-b from-brand-primary/50 to-brand-purple/50 ml-7"></div>
+                  <div className="p-3 rounded-lg bg-[var(--color-bg)] border border-brand-purple/30 flex items-center justify-between shadow-glow-purple relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-purple/10 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite]"></div>
+                    <div className="flex items-center gap-3 relative z-10">
+                      <div className="w-8 h-8 rounded bg-brand-purple/10 flex items-center justify-center text-brand-purple"><BrainCircuit size={16} /></div>
+                      <span className="text-xs font-semibold text-dark-text">Agent Inference</span>
+                    </div>
+                    <span className="text-[10px] text-brand-accent font-mono animate-pulse">Running...</span>
+                  </div>
+                  <div className="w-0.5 h-4 bg-gradient-to-b from-brand-purple/50 to-brand-accent/50 ml-7"></div>
+                  <div className="p-3 rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] flex items-center justify-between shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded bg-brand-accent/10 flex items-center justify-center text-brand-accent"><Shield size={16} /></div>
+                      <span className="text-xs font-semibold text-dark-text">Policy Validation</span>
+                    </div>
+                    <span className="text-[10px] text-dark-muted font-mono">Pending</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
