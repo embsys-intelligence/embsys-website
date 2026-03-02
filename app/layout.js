@@ -5,12 +5,10 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata = {
   title: 'Embsys Intelligence — Autonomous Agents for Visual Inspection',
-
-  description:
-    'We build autonomous AI agents for visual inspection — serving industrial manufacturing (defect detection, quality control, robotic guidance) and jewelry fintech (gold loan audit, authentication, vault monitoring).',
+  description: 'We build autonomous AI agents for visual inspection — serving industrial manufacturing (defect detection, quality control, robotic guidance) and jewelry fintech (gold loan audit, authentication, vault monitoring).',
 
   icons: {
-    icon: '/embsys_logo.png',
+    icon: '/favicon.ico',
   },
 
   openGraph: {
