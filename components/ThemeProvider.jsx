@@ -3,17 +3,17 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const ThemeContext = createContext({
-    theme: 'dark',
+    theme: 'light',
     toggleTheme: () => { },
 })
 
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState('dark')
+    const [theme, setTheme] = useState('light')
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         setMounted(true)
-        const saved = localStorage.getItem('embsys-theme') || 'dark'
+        const saved = localStorage.getItem('embsys-theme') || 'light'
         setTheme(saved)
         document.documentElement.setAttribute('data-theme', saved)
     }, [])
