@@ -6,10 +6,10 @@ import Link from 'next/link'
 
 export default function Company() {
   const values = [
-    { icon: Rocket, title: 'Autonomous First', description: 'Agents that inspect, decide and act without human intervention.', color: 'from-blue-400 to-cyan-400' },
-    { icon: Target, title: 'Two Verticals', description: 'Industry 4.0 and Gold Loan Inspection — one powerful platform.', color: 'from-cyan-400 to-teal-400' },
-    { icon: Users, title: 'Customer Partners', description: 'We embed with your team to understand workflows deeply.', color: 'from-teal-400 to-blue-400' },
-    { icon: Award, title: 'Production-Grade', description: 'Battle-tested in real factories and gold loan branches.', color: 'from-blue-400 to-purple-400' },
+    { icon: Rocket, title: 'Ease of Use', description: 'Guided setup enables fast deployment — even for non-technical users. No expertise needed.', color: 'from-blue-400 to-cyan-400' },
+    { icon: Target, title: 'Scalability', description: 'Single-camera to multi-line systems. Consistent performance at every scale.', color: 'from-cyan-400 to-teal-400' },
+    { icon: Users, title: 'AI Capabilities', description: 'Hybrid AI — on-device and cloud. Fast, accurate inspections using real training data.', color: 'from-teal-400 to-blue-400' },
+    { icon: Award, title: 'Flexible Licensing', description: 'Keep costs low with licensing options designed for both pilots and full production.', color: 'from-blue-400 to-purple-400' },
   ]
 
   return (
