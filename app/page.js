@@ -65,7 +65,6 @@ export default function Home() {
                 className="flex flex-wrap gap-2"
               >
                 {[
-                  { label: 'High Accuracy', color: 'text-brand-primary', bg: 'bg-brand-primary/10 border-brand-primary/20' },
                   { label: 'Real-time Decisions', color: 'text-brand-accent', bg: 'bg-brand-accent/10 border-brand-accent/20' },
                   { label: 'Fast Go-live', color: 'text-brand-purple', bg: 'bg-brand-purple/10 border-brand-purple/20' },
                   { label: 'Cost Efficient', color: 'text-green-400', bg: 'bg-green-400/10 border-green-400/20' },
