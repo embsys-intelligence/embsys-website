@@ -5,40 +5,12 @@ import { motion } from 'framer-motion'
 import {
   ArrowRight,
   Zap,
-  Factory,
-  Gem,
-  Eye,
-  Scan,
-  Layers,
   Target,
-  BarChart3,
-  FileText,
-  Sparkles,
-  CheckCircle,
-  Shield,
-  AlertTriangle,
   Scale,
 } from 'lucide-react'
 import ThreeBackground from '@/components/ThreeBackground'
 
 export default function Home() {
-  const industryItems = [
-    { icon: Eye, label: 'Defect Detection' },
-    { icon: Scan, label: 'Object Detection & Counting' },
-    { icon: Layers, label: 'Measuring & Gauging' },
-    { icon: Target, label: 'Locating, Guiding & Positioning' },
-    { icon: BarChart3, label: 'Barcode Reading' },
-    { icon: FileText, label: 'OCR & OCV' },
-  ]
-
-  const goldLoanItems = [
-    { icon: Sparkles, label: 'Gold Purity Testing' },
-    { icon: CheckCircle, label: 'Gold Hallmark Verification' },
-    { icon: Shield, label: 'Gold Vault Monitoring' },
-    { icon: AlertTriangle, label: 'Jewelry Risk Analysis' },
-    { icon: Scale, label: 'Weight Scale Integration' },
-  ]
-
   return (
     <>
       {/* ══════ HERO ══════ */}
@@ -104,127 +76,78 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-bg)] to-transparent"></div>
       </section>
 
-      {/* ══════ TWO VERTICALS SHOWCASE ══════ */}
+      {/* ══════ WHY EMBSYS ══════ */}
       <section className="py-20 md:py-28 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">What We Do</h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-dark-text mb-4 tracking-tight">Why Embsys?</h2>
             <p className="text-dark-muted text-lg max-w-xl mx-auto">
-              Two verticals. One AI platform. Deployed at the edge.
+              Built for the real world — not the lab.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {/* ── Industry 4.0 Panel ── */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <Link href="/solution" className="block group h-full">
-                <div className="relative rounded-3xl border border-brand-primary/20 bg-[var(--color-surface)] p-8 md:p-10 h-full overflow-hidden transition-all duration-500 hover:border-brand-primary/50 hover:shadow-glow">
-                  {/* Scan-line animation */}
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
-                    <div className="scan-line-industry"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Zap,
+                title: 'Edge-First',
+                desc: 'Runs entirely on-site. No cloud round-trip, no data leaving your premises.',
+                gradient: 'bg-gradient-brand',
+                glow: 'shadow-glow',
+                border: 'border-brand-primary/20 hover:border-brand-primary/50',
+              },
+              {
+                icon: Target,
+                title: 'High Accuracy',
+                desc: 'Trained on real-world inspection datasets across manufacturing and gold vaults.',
+                gradient: 'bg-gradient-brand',
+                glow: 'shadow-glow',
+                border: 'border-brand-primary/20 hover:border-brand-primary/50',
+              },
+              {
+                icon: ArrowRight,
+                title: 'Fast Go-Live',
+                desc: 'From pilot to production in days — not months. Pre-built agents, fast integration.',
+                gradient: 'bg-gradient-purple',
+                glow: 'shadow-glow-purple',
+                border: 'border-brand-purple/20 hover:border-brand-purple/50',
+              },
+              {
+                icon: Scale,
+                title: 'Cost Efficient',
+                desc: 'Replace manual inspection costs with a one-time edge deployment and ongoing savings.',
+                gradient: 'bg-gradient-purple',
+                glow: 'shadow-glow-purple',
+                border: 'border-brand-purple/20 hover:border-brand-purple/50',
+              },
+            ].map((card, i) => {
+              const Icon = card.icon
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`group relative rounded-2xl border ${card.border} bg-[var(--color-surface)] p-7 flex flex-col gap-4 transition-all duration-400 hover:shadow-lg overflow-hidden`}
+                >
+                  <div className={`w-12 h-12 rounded-xl ${card.gradient} flex items-center justify-center ${card.glow} group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon size={22} className="text-white" />
                   </div>
-
-                  {/* Header */}
-                  <div className="flex items-center gap-4 mb-8 relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-brand flex items-center justify-center shadow-glow icon-pulse">
-                      <Factory size={28} className="text-white" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-widest text-brand-primary">Vertical 01</span>
-                      <h3 className="text-2xl md:text-3xl font-extrabold text-dark-text tracking-tight">Industry 4.0</h3>
-                    </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-dark-text mb-1">{card.title}</h3>
+                    <p className="text-dark-muted text-sm leading-relaxed">{card.desc}</p>
                   </div>
-
-                  {/* Solution List */}
-                  <div className="space-y-4 relative z-10">
-                    {industryItems.map((item, i) => {
-                      const Icon = item.icon
-                      return (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: i * 0.08 }}
-                          viewport={{ once: true }}
-                          className="flex items-center gap-4 p-3 rounded-xl bg-[var(--color-bg)] border border-transparent hover:border-brand-primary/20 transition-all group/item"
-                        >
-                          <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover/item:bg-brand-primary group-hover/item:text-white transition-all duration-300">
-                            <Icon size={18} />
-                          </div>
-                          <span className="text-dark-text font-semibold text-sm">{item.label}</span>
-                        </motion.div>
-                      )
-                    })}
-                  </div>
-
-                  {/* Footer CTA */}
-                  <div className="mt-8 flex items-center gap-2 text-brand-primary font-bold text-sm relative z-10 group-hover:gap-3 transition-all">
-                    View Solutions <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* ── Gold Loan Inspection Panel ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <Link href="/solution" className="block group h-full">
-                <div className="relative rounded-3xl border border-brand-purple/20 bg-[var(--color-surface)] p-8 md:p-10 h-full overflow-hidden transition-all duration-500 hover:border-brand-purple/50 hover:shadow-glow-purple">
-                  {/* Gold shimmer animation */}
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
-                    <div className="gold-shimmer"></div>
-                  </div>
-
-                  {/* Header */}
-                  <div className="flex items-center gap-4 mb-8 relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-purple flex items-center justify-center shadow-glow-purple icon-pulse">
-                      <Gem size={28} className="text-white" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-widest text-brand-purple">Vertical 02</span>
-                      <h3 className="text-2xl md:text-3xl font-extrabold text-dark-text tracking-tight">Gold Loan Inspection</h3>
-                    </div>
-                  </div>
-
-                  {/* Solution List */}
-                  <div className="space-y-4 relative z-10">
-                    {goldLoanItems.map((item, i) => {
-                      const Icon = item.icon
-                      return (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: i * 0.08 }}
-                          viewport={{ once: true }}
-                          className="flex items-center gap-4 p-3 rounded-xl bg-[var(--color-bg)] border border-transparent hover:border-brand-purple/20 transition-all group/item"
-                        >
-                          <div className="w-10 h-10 rounded-lg bg-brand-purple/10 flex items-center justify-center text-brand-purple group-hover/item:bg-brand-purple group-hover/item:text-white transition-all duration-300">
-                            <Icon size={18} />
-                          </div>
-                          <span className="text-dark-text font-semibold text-sm">{item.label}</span>
-                        </motion.div>
-                      )
-                    })}
-                  </div>
-
-                  {/* Footer CTA */}
-                  <div className="mt-8 flex items-center gap-2 text-brand-purple font-bold text-sm relative z-10 group-hover:gap-3 transition-all">
-                    View Solutions <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+                </motion.div>
+              )
+            })}
           </div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} viewport={{ once: true }} className="text-center mt-12">
+            <Link href="/solution" className="btn-outline px-8 py-3 inline-flex items-center gap-2">
+              See Our Solutions <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
