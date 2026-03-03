@@ -120,6 +120,110 @@ export default function Solution() {
       </section>
 
 
+
+      {/* ═══ GOLD LOAN SHOWCASE (Gold Loan tab only) ═══ */}
+      {activeTab === 'fintech' && (
+        <section className="py-16 md:py-20 relative">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* ── 2-column: image left, content right ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+              {/* Image */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-brand-purple/15 blur-3xl rounded-2xl scale-90"></div>
+                <motion.img
+                  src="/gold_loan_hero.png"
+                  alt="AI Gold Loan Inspection System"
+                  className="relative w-full rounded-2xl shadow-2xl ring-1 ring-brand-purple/20"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -right-4 bg-gradient-purple text-white text-xs font-bold px-4 py-2 rounded-xl shadow-glow-purple">
+                  AI-Powered Inspection
+                </div>
+              </motion.div>
+
+              {/* Content */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <div>
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/25 text-brand-purple text-xs font-bold uppercase tracking-widest mb-3">
+                    <Gem size={11} /> Gold Loan Inspection
+                  </span>
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-dark-text leading-tight mb-3">
+                    Instant AI Verification for Every Gold Loan
+                  </h2>
+                  <p className="text-dark-muted text-sm leading-relaxed">
+                    Embsys Visual Intelligence automates the entire gold assessment workflow — from purity testing to hallmark verification and vault monitoring — delivering results in seconds with zero manual errors.
+                  </p>
+                </div>
+
+                {/* Feature list */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { icon: Sparkles, title: 'Gold Purity Testing', desc: 'AI detects 18K/22K/24K grading from surface analysis' },
+                    { icon: CheckCircle, title: 'Hallmark Verification', desc: 'Instant BIS hallmark authenticity checks' },
+                    { icon: Shield, title: 'Vault Monitoring', desc: '24/7 AI surveillance for gold storage security' },
+                    { icon: AlertTriangle, title: 'Risk Analysis', desc: 'Flag suspicious or counterfeit jewelry instantly' },
+                  ].map((f, i) => {
+                    const Icon = f.icon
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.2 + i * 0.07 }}
+                        viewport={{ once: true }}
+                        className="flex items-start gap-3 p-4 rounded-xl bg-[var(--color-surface)] border border-brand-purple/15 hover:border-brand-purple/40 transition-colors"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-gradient-purple flex-shrink-0 flex items-center justify-center shadow-glow-purple">
+                          <Icon size={15} className="text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-dark-text">{f.title}</p>
+                          <p className="text-[11px] text-dark-muted leading-snug mt-0.5">{f.desc}</p>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+
+                {/* Stats row */}
+                <div className="flex gap-6 pt-2">
+                  {[
+                    { value: '99.5%', label: 'Purity Accuracy' },
+                    { value: '<3s', label: 'Per Assessment' },
+                    { value: '0', label: 'Experts Needed' },
+                  ].map((stat, i) => (
+                    <div key={i} className="text-center">
+                      <p className="text-2xl font-extrabold text-gradient-animate">{stat.value}</p>
+                      <p className="text-[11px] text-dark-muted font-medium uppercase tracking-wider">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <Link href="/contact" className="inline-flex items-center gap-2 btn-gradient px-6 py-3 text-sm">
+                  Request Gold Loan Demo <ArrowRight size={15} />
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ═══ 3-STEP SETUP (Industry 4.0 only) ═══ */}
       {activeTab === 'industry' && (
         <section className="py-16 md:py-20 relative">
