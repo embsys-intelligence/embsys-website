@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import ThreeNetworkBackground from '@/components/ThreeNetworkBackground'
 
 export default function Solution() {
   const [activeTab, setActiveTab] = useState('industry')
@@ -39,8 +40,9 @@ export default function Solution() {
     <>
       {/* ═══ HERO — compact ═══ */}
       <section className="pt-32 pb-16 relative overflow-hidden bg-grid">
-        <div className="blob-blue top-10 -right-40 opacity-40"></div>
-        <div className="blob-purple top-1/2 left-1/4 opacity-20"></div>
+        <ThreeNetworkBackground />
+        <div className="blob-blue top-10 -right-40 opacity-40 dark:mix-blend-screen"></div>
+        <div className="blob-purple top-1/2 left-1/4 opacity-20 dark:mix-blend-screen"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-4">
