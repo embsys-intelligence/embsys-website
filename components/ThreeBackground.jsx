@@ -41,9 +41,9 @@ function GoldenParticles({ theme, ...props }) {
         }
     })
 
-    // Use a darker amber/gold for light mode to ensure contrast against white background
+    // Use a moderate gold/amber for light mode for better visibility
     const isDark = theme === 'dark'
-    const color = isDark ? '#F59E0B' : '#B45309'
+    const color = isDark ? '#F59E0B' : '#D97706'
 
     return (
         <group rotation={[0, 0, Math.PI / 4]}>
@@ -51,10 +51,10 @@ function GoldenParticles({ theme, ...props }) {
                 <PointMaterial
                     transparent
                     color={color}
-                    size={isDark ? 0.035 : 0.045}
+                    size={isDark ? 0.035 : 0.03}
                     sizeAttenuation={true}
                     depthWrite={false}
-                    opacity={isDark ? 0.6 : 0.9}
+                    opacity={isDark ? 0.6 : 0.5}
                 />
             </Points>
         </group>
@@ -70,8 +70,8 @@ export default function ThreeBackground() {
             className="absolute inset-0 z-0 pointer-events-none"
             aria-hidden="true"
             style={{
-                opacity: isDark ? 0.5 : 0.7,
-                mixBlendMode: isDark ? 'screen' : 'multiply'
+                opacity: isDark ? 0.5 : 0.8,
+                mixBlendMode: isDark ? 'screen' : 'normal'
             }}
         >
             <Canvas camera={{ position: [0, 0, 8] }}>
