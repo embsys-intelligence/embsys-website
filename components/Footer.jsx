@@ -24,7 +24,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-dark-muted text-sm leading-relaxed mb-6">
-              We build autonomous AI agents for visual inspection — serving both industrial manufacturing and jewelry fintech.
+              We build autonomous AI agents for visual inspection — serving both Industry 4.0 and Gold Loan Inspection.
             </p>
             {/* Email CTA */}
             <a href="mailto:kk@embsysai.in" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent text-sm font-medium transition-colors group">
@@ -57,11 +57,11 @@ export default function Footer() {
           <div>
             <h4 className="text-dark-text font-bold mb-5 text-xs uppercase tracking-[0.2em]">Solutions</h4>
             <div className="space-y-3">
-              <span className="block text-brand-primary/80 text-xs font-semibold uppercase tracking-wider">Industry</span>
+              <span className="block text-brand-primary/80 text-xs font-semibold uppercase tracking-wider">Industry 4.0</span>
               {['Manufacturing QC', 'Defect Detection', 'Robotic Guidance'].map((item) => (
                 <span key={item} className="block text-dark-muted text-sm">{item}</span>
               ))}
-              <span className="block text-brand-purple/80 text-xs font-semibold uppercase tracking-wider mt-4">Fintech</span>
+              <span className="block text-brand-purple/80 text-xs font-semibold uppercase tracking-wider mt-4">Gold Loan Inspection</span>
               {['Jewelry Inspection', 'Gold Loan Audit', 'Vault Monitoring'].map((item) => (
                 <span key={item} className="block text-dark-muted text-sm">{item}</span>
               ))}

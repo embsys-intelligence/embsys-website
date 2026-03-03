@@ -18,7 +18,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata = {
   title: 'Embsys Intelligence — Autonomous Agents for Visual Inspection',
-  description: 'We build autonomous AI agents for visual inspection — serving industrial manufacturing (defect detection, quality control, robotic guidance) and jewelry fintech (gold loan audit, authentication, vault monitoring).',
+  description: 'We build autonomous AI agents for visual inspection — serving Industry 4.0 (defect detection, quality control, robotic guidance) and Gold Loan Inspection (gold loan audit, authentication, vault monitoring).',
 
   icons: {
     icon: '/favicon.ico',
@@ -45,7 +45,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Embsys Intelligence',
     description:
-      'Autonomous AI agents for visual inspection, industrial automation, and fintech security.',
+      'Autonomous AI agents for visual inspection, Industry 4.0 automation, and Gold Loan Inspection.',
     images: ['https://embsysai.in/embsys_logo.png'],
   },
 }
